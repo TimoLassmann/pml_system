@@ -1,0 +1,3 @@
+[submodule "lib/tld"]
+	path = lib/tld
+	url = https://github.com/timolassmann/tld.git
