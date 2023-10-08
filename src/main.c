@@ -25,8 +25,8 @@ int main(void)
 {
         // Initialization
         //--------------------------------------------------------------------------------------
-        const int screenWidth = 1000;
-        const int screenHeight = 790;
+        const int screenWidth = 500;
+        const int screenHeight = 540;
         int paused = 0;
         /* float ball_size = 2.0; */
         grid* g = NULL;
@@ -41,7 +41,7 @@ int main(void)
 
         SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
-        int density =(int) (( (float) screenWidth / 5.0) * ((float) screenHeight / 5.0) * 0.07);
+        int density =(int) (( (float) screenWidth / 5.0) * ((float) screenHeight / 5.0) * 0.06);
         /* LOG_MSG("%d p", density); */
 
         /* exit(0); */
@@ -67,11 +67,14 @@ int main(void)
 
                 if(IsKeyPressed(KEY_SPACE)){
                         paused = !paused;
-                        /* while(1){ */
-                        /*         if(IsKeyPressed(KEY_SPACE)){ */
-                        /*                 break; */
-                        /*         } */
-                        /* } */
+                }
+                if(IsKeyPressed(KEY_LEFT)){
+                        step_per_frame -= 2;
+                        step_per_frame = MACRO_MAX(1, step_per_frame);
+                }
+                if(IsKeyPressed(KEY_RIGHT)){
+                        step_per_frame += 2;
+                        step_per_frame = MACRO_MIN(20, step_per_frame);
                 }
 
                 // Update particles
@@ -81,7 +84,6 @@ int main(void)
                                 grid_clear(g);
                                 /* LOG_MSG("Adding: %d",l->n); */
                                 for(int i = 0; i < l->n;i++){
-
                                         grid_add_particle(g, &l->particles[i] );
                                 }
 

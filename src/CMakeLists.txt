@@ -1,5 +1,5 @@
-find_library(raylib NAMES raylib)
 
+find_package(raylib 3.0 REQUIRED)
 if(NOT raylib)
   message(FATAL_ERROR "library.a not found!")
 endif()
@@ -7,7 +7,7 @@ endif()
 
 
 
-include_directories("${CMAKE_SOURCE_DIR}/raylib-4.5.0_macos/include")
+# include_directories("${CMAKE_SOURCE_DIR}/raylib-4.5.0_macos/include")
 add_executable(alife
   main.c
   grid.c
@@ -15,7 +15,7 @@ add_executable(alife
 
 target_link_libraries(alife 
   PRIVATE
-  ${raylib}
+  raylib
   tld-dev
   )
 
@@ -24,6 +24,7 @@ add_executable(test_grid
   grid.c
   )
 target_link_libraries(test_grid
-  PRIVATE  
+  PRIVATE
+  raylib
   tld-dev
   )

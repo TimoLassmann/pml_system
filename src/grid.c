@@ -120,6 +120,10 @@ int update_n(grid *g, particle *p,p_list *l)
         float alpha = 180.0;
         float beta = 17.0;
         float sign = 0.0;
+
+
+        /* alpha = 180; */
+        /* beta = -7;  */
         if(rightCount < leftCount){
                 sign = -1.0;
         }else if(rightCount == leftCount){
