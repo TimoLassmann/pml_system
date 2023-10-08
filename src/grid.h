@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 
+#include "particle_struct.h"
 #ifdef GRID_IMPORT
 #define EXTERN
 #else
@@ -24,8 +25,10 @@ typedef struct grid {
         int n_row;
         int n_col;
 } grid;
-
-
+EXTERN  int update_n(grid *g, particle *p,p_list *l);
+EXTERN  int grid_add_particle(grid *g, particle *p);
+EXTERN  int grid_print(grid *g);
+EXTERN  int grid_clear(grid *g);
 EXTERN  int grid_alloc(grid **g, float h, float w, float cell_size);
 EXTERN void grid_free(grid *n);
 #undef GRID_IMPORT

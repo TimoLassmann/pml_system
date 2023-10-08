@@ -5,7 +5,7 @@
 #include <stdlib.h>
 
 #include "particle_struct.h"
-
+#include "grid.h"
 int p_list_update(p_list *l);
 int p_list_update_speed(p_list *l);
 int p_list_add_random_particles_at_mouse(p_list* l , int n);
@@ -20,14 +20,16 @@ static inline Vector2  wrap_dist(Vector2 p1, Vector2 p2, float  w, float  h);
 //------------------------------------------------------------------------------------
 // Program main entry point
 //------------------------------------------------------------------------------------
+
 int main(void)
 {
         // Initialization
         //--------------------------------------------------------------------------------------
         const int screenWidth = 1000;
         const int screenHeight = 790;
+        int paused = 0;
         /* float ball_size = 2.0; */
-
+        grid* g = NULL;
         p_list* l = NULL;
 
         InitWindow(screenWidth, screenHeight, "Alife: particle motion law");
@@ -39,35 +41,58 @@ int main(void)
 
         SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
-        int density =(int) (( (float) screenWidth / 5.0) * ((float) screenHeight / 5.0) * 0.08);
+        int density =(int) (( (float) screenWidth / 5.0) * ((float) screenHeight / 5.0) * 0.07);
         /* LOG_MSG("%d p", density); */
 
         /* exit(0); */
         p_list_add_random_particles(l, density);
-        /* for(int i = 0; i < 1000;i++){ */
-        /*         p_list_update(l); */
-        /*         LOG_MSG("%d done",i); */
-        /* } */
+
+        grid_alloc(&g, screenHeight, screenWidth, 25);
+
+
+
+        /* exit(0); */
         int n_step = 0;
+        int step_per_frame = 10;
         // Main game loop
         while (!WindowShouldClose())    // Detect window close button or ESC key
         {
                 // Update
                 //----------------------------------------------------------------------------------
-                if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+                if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
                 {
-                        p_list_add_random_particles_at_mouse(l, 1);
+                        p_list_add_random_particles_at_mouse(l, 10);
                         /* p_list_add_random_particles(l, 100); */
+                }
+
+                if(IsKeyPressed(KEY_SPACE)){
+                        paused = !paused;
+                        /* while(1){ */
+                        /*         if(IsKeyPressed(KEY_SPACE)){ */
+                        /*                 break; */
+                        /*         } */
+                        /* } */
                 }
 
                 // Update particles
                 /* if(n_step % 10 == 0){ */
-                p_list_update(l);
-                /* } */
+                if(!paused){
+                        for(int i = 0; i < step_per_frame;i++){
+                                grid_clear(g);
+                                /* LOG_MSG("Adding: %d",l->n); */
+                                for(int i = 0; i < l->n;i++){
 
-                p_list_update_speed(l);
-                /* p_list_update(l); */
+                                        grid_add_particle(g, &l->particles[i] );
+                                }
 
+                                for(int i = 0; i < l->n;i++){
+                                        update_n(g, &l->particles[i] ,l);
+                                }
+                                /* p_list_update(l); */
+                                p_list_update_speed(l);
+                        }
+                        n_step += step_per_frame;
+                }
                 //----------------------------------------------------------------------------------
 
                 // Draw
@@ -95,7 +120,7 @@ int main(void)
                 DrawFPS(10, 10);
 
                 EndDrawing();
-                n_step++;
+
                 //----------------------------------------------------------------------------------
         }
 
@@ -281,6 +306,7 @@ int p_list_add_random_particles(p_list* l , int n)
 
                 l->particles[l->n].speed.x = (float)l->particles[l->n].direction.x * 0.67 * 5;
                 l->particles[l->n].speed.y = (float)l->particles[l->n].direction.y * 0.67 * 5;
+                l->particles[l->n].id = l->n;
                 /* l->particles[l->n] = point; */
                 /* LOG_MSG("Added %f %f", l->particles[l->n].position.x, l->particles[l->n].position.y); */
                 l->n++;
@@ -312,6 +338,8 @@ int p_list_add_random_particles_at_mouse(p_list* l , int n)
                 /* l->particles[l->n].position.y = GetRandomValue(0,GetScreenHeight());//GetMousePosition(); */
                 l->particles[l->n].speed.x = (float)l->particles[l->n].direction.x * 0.67*5.0;
                 l->particles[l->n].speed.y = (float)l->particles[l->n].direction.y * 0.67*5.0;
+                l->particles[l->n].id = l->n;
+
                 /* l->particles[l->n] = point; */
                 /* LOG_MSG("Added %f %f", l->particles[l->n].position.x, l->particles[l->n].position.y); */
                 l->n++;

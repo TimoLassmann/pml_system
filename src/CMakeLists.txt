@@ -18,3 +18,12 @@ target_link_libraries(alife
   ${raylib}
   tld-dev
   )
+
+add_executable(test_grid
+  test_grid.c
+  grid.c
+  )
+target_link_libraries(test_grid
+  PRIVATE  
+  tld-dev
+  )
