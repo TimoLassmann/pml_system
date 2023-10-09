@@ -1,8 +1,13 @@
-[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)]
+[[License][https://img.shields.io/badge/License-BSD_3--Clause-blue.svg]]
 * Primordial Particle System
 
 
 *Warning: this is a hobby project* 
+
+Other:
+
+
+https://github.com/fzipp/pps
 
 An implementation of the Primordial Particle System (PPS) implemented in C using the [[https://github.com/raysan5/raylib/releases][raylib]] library.
 
