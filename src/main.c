@@ -25,8 +25,8 @@ int main(void)
 {
         // Initialization
         //--------------------------------------------------------------------------------------
-        const int screenWidth = 500;
-        const int screenHeight = 540;
+        const int screenWidth = 1400;
+        const int screenHeight = 790;
         int paused = 0;
         /* float ball_size = 2.0; */
         grid* g = NULL;

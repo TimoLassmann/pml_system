@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.18)
 
-project(agp LANGUAGES C VERSION "1.0.0")
+project(pml_system LANGUAGES C VERSION "1.0.0")
 
 set (CMAKE_C_STANDARD 11)
 
