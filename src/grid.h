@@ -25,7 +25,8 @@ typedef struct grid {
         int n_row;
         int n_col;
 } grid;
-EXTERN  int update_n(grid *g, particle *p,p_list *l);
+EXTERN  int update_n(grid *g, particle *p,p_list *l,float alpha,float beta  );
+/* EXTERN  int update_n(grid *g, particle *p,p_list *l); */
 EXTERN  int grid_add_particle(grid *g, particle *p);
 EXTERN  int grid_print(grid *g);
 EXTERN  int grid_clear(grid *g);

@@ -3,6 +3,9 @@
 #include "particle_struct.h"
 #include <raylib.h>
 #include <raymath.h>
+
+
+
 #define GRID_IMPORT
 #include "grid.h"
 
@@ -11,8 +14,7 @@ static inline Vector2  wrap_dist(Vector2 p1, Vector2 p2, float  w, float  h);
  int grid_cell_resize(grid_cell *n);
 void grid_cell_free(grid_cell *n);
 
-
-int update_n(grid *g, particle *p,p_list *l)
+int update_n(grid *g, particle *p,p_list *l,float alpha,float beta  )
 {
         float  givenRadius = 25.0;
         float closeR  = 5.0 * 1.3;
@@ -117,8 +119,8 @@ int update_n(grid *g, particle *p,p_list *l)
         /* TLD_END_TIMER */
         int neighbors = leftCount + rightCount;
 
-        float alpha = 180.0;
-        float beta = 17.0;
+        /* float alpha = 180.0; */
+        /* float beta = 17.0; */
         float sign = 0.0;
 
 

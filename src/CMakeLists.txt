@@ -2,7 +2,11 @@ find_package(raylib 3.0 REQUIRED)
 
 add_executable(pml_system
   main.c
+  world.c
+  param.c
   grid.c
+  particle_alloc.c
+  particle_op.c
   )
 
 target_link_libraries(pml_system
