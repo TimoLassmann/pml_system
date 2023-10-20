@@ -18,7 +18,6 @@ int param_parse(int argc, char *argv[],parameters **param)
 {
         parameters* p = NULL;
         int c;
-        int help = 0;
 
         RUN(param_init(&p));
 
@@ -32,7 +31,6 @@ int param_parse(int argc, char *argv[],parameters **param)
                 };
 
                 int option_index = 0;
-
                 c = getopt_long_only (argc, argv,"a:b:d:h",long_options, &option_index);
 
                 /* Detect the end of the options. */
@@ -49,9 +47,8 @@ int param_parse(int argc, char *argv[],parameters **param)
                 case 'd':
                         p->density = (float) atof(optarg);
                         break;
-
                 case 'h':
-                        help = 1;
+                        p->help = 1;
                         break;
                 case '?':
                         param_free(p);
@@ -62,10 +59,9 @@ int param_parse(int argc, char *argv[],parameters **param)
                 }
         }
 
-        if(help || argc < 2 ){
+        if(p->help || argc < 2 ){
                 print_help(argv);
         }
-
         *param = p;
         return OK;
 ERROR:
@@ -87,12 +83,6 @@ int print_help(char * argv[])
         fprintf(stdout,"%*s%-*s: %s %s\n",3,"",MARGIN-3,"-d/--density","Inital particle density." ,"[0.07]"  );
 
         fprintf(stdout,"\n\n");
-        /* fprintf(stdout,"%*s%-*s: %s %s\n",3,"",MESSAGE_MARGIN-3,"--reformat","Reformat existing alignment." ,"[NA]"  ); */
-
-        /* fprintf(stdout,"\nExamples:\n\n"); */
-
-        /* fprintf(stdout,"Passing sequences via stdin:\n\n   cat input.fa | kalign -f fasta > out.afa\n\n"); */
-        /* fprintf(stdout,"Combining multiple input files:\n\n   kalign seqsA.fa seqsB.fa seqsC.fa -f fasta > combined.afa\n\n"); */
 
         if(basename){
                 MFREE(basename);
@@ -107,13 +97,13 @@ ERROR:
 
 int param_init(parameters **param)
 {
-
         parameters* p = NULL;
         MMALLOC(p, sizeof(parameters));
         p->alpha = 180.0f;
         p->beta = 17.0f;
         p->density = 0.06f;
         p->velocity = 0.67f;
+        p->help = 0;
         *param =p;
         return OK;
 ERROR:

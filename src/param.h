@@ -12,6 +12,7 @@ typedef struct parameters {
         float beta;
         float density;
         float velocity;
+        int help;
 } parameters;
 
 EXTERN int  param_parse(int argc, char *argv[],parameters **param);

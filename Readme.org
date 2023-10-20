@@ -1,15 +1,11 @@
 [[License][https://img.shields.io/badge/License-BSD_3--Clause-blue.svg]]
 * Primordial Particle System
 
+Welcome to my experimental implementation of the Primordial Particle System (PPS) by Thomas Schmickl & Martin Stefanec using [[https://github.com/raysan5/raylib/releases][Raylib]] in C! This project is purely a hobby endeavor, born out of my dual interests: exploring the behaviours of particles and getting hands-on experience with Raylib. Please note that this is an experimental project and might have its quirks, but I hope you find it as intriguing and fun to play with as I did while developing it.
 
-*Warning: this is a hobby project* 
+[[Image of example output][images/pps.png]]
 
-Other:
-
-
-https://github.com/fzipp/pps
-
-An implementation of the Primordial Particle System (PPS) implemented in C using the [[https://github.com/raysan5/raylib/releases][raylib]] library.
+Here is the original publication by the authors:
 
 Schmickl, T., Stefanec, M. & Crailsheim, K.
 [How a life-like system emerges from a simplistic particle motion law.](https://www.nature.com/articles/srep37969)
@@ -35,6 +31,29 @@ cmake ..
 #+end_src
 
 The compiled program is placed in `build/bin/`.
+
+** Usage
+
+The command line interface accepts the following options:
+
+#+begin_src bash :eval never 
+Usage: pml_system
+
+Options:
+
+   -a/--alpha         : Alpha parameter. [180]
+   -b/--beta          : Beta parameter. [17]
+   -d/--density       : Inital particle density. [0.07]
+
+#+end_src
+
+To run with default parameters simply:
+
+#+begin_src bash :eval never 
+$ ./pml_system 
+#+end_src
+
+
 
 ** License
 
