@@ -3,9 +3,7 @@
 
 Welcome to my experimental implementation of the Primordial Particle System (PPS) by Thomas Schmickl & Martin Stefanec using [[https://github.com/raysan5/raylib/releases][Raylib]] in C! This project is purely a hobby endeavor, born out of my dual interests: exploring the behaviours of particles and getting hands-on experience with Raylib. Please note that this is an experimental project and might have its quirks, but I hope you find it as intriguing and fun to play with as I did while developing it.
 
-[[https://github.com/timolassmann/pml_system/raw/main/images/pps.png][Example image]]
-
-Here is the original publication by the authors:
+file:image/pps.png
 
 Schmickl, T., Stefanec, M. & Crailsheim, K.
 [How a life-like system emerges from a simplistic particle motion law.](https://www.nature.com/articles/srep37969)
