@@ -3,7 +3,7 @@
 
 Welcome to my experimental implementation of the Primordial Particle System (PPS) by Thomas Schmickl & Martin Stefanec using [[https://github.com/raysan5/raylib/releases][Raylib]] in C! This project is purely a hobby endeavor, born out of my dual interests: exploring the behaviours of particles and getting hands-on experience with Raylib. Please note that this is an experimental project and might have its quirks, but I hope you find it as intriguing and fun to play with as I did while developing it.
 
-[[Image of example output][images/pps.png]]
+[[images/pps.png][Image of example output]]
 
 Here is the original publication by the authors:
 
