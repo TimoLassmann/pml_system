@@ -45,7 +45,10 @@ To run with default parameters simply:
 $ ./pml_system 
 #+end_src
 
-
+In 'game' use the:
+- left and right arrow keys to slow down / speed up the simulation
+- space to pause
+- and esc to quit.
 
 ** License
 
